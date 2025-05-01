@@ -1,0 +1,94 @@
+/* Estilos para el encabezado */
+head {
+    font-family: 'Georgia', serif;
+    font-size: 36px;
+    color: #ff6600;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para el cuerpo del texto */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    color: #333;
+    background-color: #9097be;
+    margin: 20px;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Opcional: Estilos para los párrafos */
+p {
+    text-align: justify;
+    margin-bottom: 15px;
+}
+h1 {
+    font-size: 36px;
+    color: #000000;
+    text-align: center;
+}
+/* Estilos para el título */
+h1 {
+    font-size: 36px;
+    color: white; /* Color del texto */
+    background-color: #ff0000; /* Color de fondo */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+/* Fondo rojizo y negro para los h3 */
+h3 {
+    background: linear-gradient(to right, #8b0000, #000000); /* Degradado de rojo oscuro a negro */
+    color: white; /* Texto en blanco para contraste */
+    padding: 15px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6); /* Sombra para un efecto más profundo */
+    text-align: center; /* Centra el texto */
+    margin-bottom: 15px; /* Espacio entre elementos */
+}
+/* Fondo rojizo y negro para los h2 */
+h2 {
+    background: linear-gradient(to right, #8b0000, #ff3c00); /* Degradado de rojo oscuro a negro */
+    color: white; /* Texto en blanco para contraste */
+    padding: 15px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6); /* Sombra para un efecto más profundo */
+    text-align: center; /* Centra el texto */
+    margin-bottom: 15px; /* Espacio entre elementos */
+}
+/* Estilos para el pie de encabezado */
+footer {
+    font-size: 20px;
+    color: white; /* Color del texto */
+    background-color: #ff0000; /* Color de fondo */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+/* Fondo rojizo y negro para los h2 */
+h4 {
+    background: linear-gradient(to right, #000000, #1100ff); /* Degradado de rojo oscuro a negro */
+    color: white; /* Texto en blanco para contraste */
+    padding: 15px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6); /* Sombra para un efecto más profundo */
+    text-align: center; /* Centra el texto */
+    margin-bottom: 15px; /* Espacio entre elementos */
+}
+footer {
+    background-color: #000; /* Fondo negro */
+    color: white; /* Texto blanco */
+    text-align: center; /* Centrar el texto */
+    padding: 20px;
+}
+
+footer img {
+    margin: 10px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.3); /* Sombra blanca */
+}
+
