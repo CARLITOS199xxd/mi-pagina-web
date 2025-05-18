@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos vs Tú - Gimnasio y Carreras</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .game-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+            width: 80%;
+            max-width: 800px;
+        }
+        
+        .game-screen {
+            display: none;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .character {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .character-info {
+            margin-left: 20px;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .progress-bar {
+            height: 30px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        #gym-game .progress-bar {
+            background-color: #4CAF50;
+        }
+        
+        #race-game .progress-bar {
+            background-color: #2196F3;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        button {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #E64A19;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .game-selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .game-selector button {
+            background-color: #607D8B;
+        }
+        
+        .game-selector button.active {
+            background-color: #455A64;
+        }
+        
+        #setup-screen input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        #race-track {
+            height: 200px;
+            background-color: #8BC34A;
+            position: relative;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .racer {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: left 0.1s linear;
+        }
+        
+        #player-racer {
+            background-color: #FF5722;
+            top: 30px;
+        }
+        
+        #carlos-racer {
+            background-color: #9C27B0;
+            top: 110px;
+        }
+        
+        .finish-line {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background-color: black;
+        }
+        
+        .result {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            min-height: 40px;
+        }
+        
+        .weight {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carlos vs Tú - Desafío Deportivo</h1>
+    
+    <div id="setup-screen" class="game-screen active">
+        <h2>Configuración del Juego</h2>
+        <div>
+            <label for="player-name">Tu nombre:</label>
+            <input type="text" id="player-name" placeholder="Ingresa tu nombre">
+        </div>
+        <div class="controls">
+            <button id="start-btn">Comenzar</button>
+        </div>
+    </div>
+    
+    <div class="game-selector">
+        <button id="gym-selector" class="active">Gimnasio</button>
+        <button id="race-selector">Carreras</button>
+    </div>
+    
+    <div id="gym-game" class="game-container game-screen">
+        <h2>Desafío en el Gimnasio</h2>
+        <p>¡Presiona rápido tu botón para levantar más peso que Carlos!</p>
+        
+        <div class="character">
+            <div id="player-gym" class="progress-bar" style="width: 0%">0 kg</div>
+            <div class="character-info">
+                <h3 id="player-name-display">Tú</h3>
+                <div class="weight">Peso levantado: <span id="player-weight">0</span> kg</div>
+            </div>
+        </div>
+        
+        <div class="character">
+            <div id="carlos-gym" class="progress-bar" style="width: 0%">0 kg</div>
+            <div class="character-info">
+                <h3>Carlos</h3>
+                <div class="weight">Peso levantado: <span id="carlos-weight">0</span> kg</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="player-lift-btn">¡Levantar!</button>
+        </div>
+        
+        <div class="result" id="gym-result"></div>
+        
+        <div class="controls">
+            <button id="gym-restart-btn">Reiniciar</button>
+            <button id="switch-to-race-btn">Cambiar a Carreras</button>
+        </div>
+    </div>
+    
+    <div id="race-game" class="game-container game-screen">
+        <h2>Carrera de Velocidad</h2>
+        <p>¡Presiona rápido tu botón para correr más rápido que Carlos!</p>
+        
+        <div id="race-track">
+            <div class="finish-line"></div>
+            <div id="player-racer" class="racer">Tú</div>
+            <div id="carlos-racer" class="racer">Carlos</div>
+        </div>
+        
+        <div class="character">
+            <div id="player-race" class="progress-bar" style="width: 0%">0%</div>
+            <div class="character-info">
+                <h3 id="player-name-display-race">Tú</h3>
+                <div class="weight">Velocidad: <span id="player-speed">0</span> km/h</div>
+            </div>
+        </div>
+        
+        <div class="character">
+            <div id="carlos-race" class="progress-bar" style="width: 0%">0%</div>
+            <div class="character-info">
+                <h3>Carlos</h3>
+                <div class="weight">Velocidad: <span id="carlos-speed">0</span> km/h</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="player-run-btn">¡Correr!</button>
+        </div>
+        
+        <div class="result" id="race-result"></div>
+        
+        <div class="controls">
+            <button id="race-restart-btn">Reiniciar</button>
+            <button id="switch-to-gym-btn">Cambiar a Gimnasio</button>
+        </div>
+    </div>
+
+    <script>
+        // Elementos del DOM
+        const setupScreen = document.getElementById('setup-screen');
+        const gymGame = document.getElementById('gym-game');
+        const raceGame = document.getElementById('race-game');
+        const gymSelector = document.getElementById('gym-selector');
+        const raceSelector = document.getElementById('race-selector');
+        const startBtn = document.getElementById('start-btn');
+        const playerNameInput = document.getElementById('player-name');
+        
+        // Variables del juego
+        let playerName = 'Tú';
+        let gymGameActive = true;
+        let gymGameRunning = false;
+        let raceGameRunning = false;
+        
+        // Inicialización
+        startBtn.addEventListener('click', startGame);
+        gymSelector.addEventListener('click', () => switchGame('gym'));
+        raceSelector.addEventListener('click', () => switchGame('race'));
+        
+        function startGame() {
+            playerName = playerNameInput.value || 'Tú';
+            document.getElementById('player-name-display').textContent = playerName;
+            document.getElementById('player-name-display-race').textContent = playerName;
+            document.getElementById('player-racer').textContent = playerName;
+            
+            setupScreen.classList.remove('active');
+            gymGame.classList.add('active');
+            
+            setupGymGame();
+        }
+        
+        function switchGame(game) {
+            gymGameActive = game === 'gym';
+            
+            if (gymGameActive) {
+                gymSelector.classList.add('active');
+                raceSelector.classList.remove('active');
+                gymGame.classList.add('active');
+                raceGame.classList.remove('active');
+                setupGymGame();
+            } else {
+                gymSelector.classList.remove('active');
+                raceSelector.classList.add('active');
+                gymGame.classList.remove('active');
+                raceGame.classList.add('active');
+                setupRaceGame();
+            }
+        }
+        
+        // Juego de Gimnasio
+        let playerWeight = 0;
+        let carlosWeight = 0;
+        let gymInterval;
+        
+        const playerLiftBtn = document.getElementById('player-lift-btn');
+        const playerGymBar = document.getElementById('player-gym');
+        const carlosGymBar = document.getElementById('carlos-gym');
+        const playerWeightDisplay = document.getElementById('player-weight');
+        const carlosWeightDisplay = document.getElementById('carlos-weight');
+        const gymResult = document.getElementById('gym-result');
+        const gymRestartBtn = document.getElementById('gym-restart-btn');
+        const switchToRaceBtn = document.getElementById('switch-to-race-btn');
+        
+        function setupGymGame() {
+            playerWeight = 0;
+            carlosWeight = 0;
+            
+            playerWeightDisplay.textContent = '0';
+            carlosWeightDisplay.textContent = '0';
+            playerGymBar.style.width = '0%';
+            playerGymBar.textContent = '0 kg';
+            carlosGymBar.style.width = '0%';
+            carlosGymBar.textContent = '0 kg';
+            gymResult.textContent = '';
+            
+            playerLiftBtn.disabled = false;
+            playerLiftBtn.textContent = '¡Levantar!';
+            
+            playerLiftBtn.addEventListener('click', playerLift);
+            gymRestartBtn.addEventListener('click', setupGymGame);
+            switchToRaceBtn.addEventListener('click', () => switchGame('race'));
+            
+            if (gymInterval) clearInterval(gymInterval);
+            gymInterval = setInterval(carlosLift, 1000);
+            gymGameRunning = true;
+        }
+        
+        function playerLift() {
+            if (!gymGameRunning) return;
+            
+            const liftAmount = Math.floor(Math.random() * 5) + 3;
+            playerWeight += liftAmount;
+            
+            updateGymDisplay();
+            checkGymWinner();
+        }
+        
+        function carlosLift() {
+            if (!gymGameRunning) return;
+            
+            const liftAmount = Math.floor(Math.random() * 4) + 2;
+            carlosWeight += liftAmount;
+            
+            updateGymDisplay();
+            checkGymWinner();
+        }
+        
+        function updateGymDisplay() {
+            const maxWeight = Math.max(playerWeight, carlosWeight, 100);
+            const playerPercentage = (playerWeight / maxWeight) * 100;
+            const carlosPercentage = (carlosWeight / maxWeight) * 100;
+            
+            playerGymBar.style.width = `${playerPercentage}%`;
+            playerGymBar.textContent = `${playerWeight} kg`;
+            playerWeightDisplay.textContent = playerWeight;
+            
+            carlosGymBar.style.width = `${carlosPercentage}%`;
+            carlosGymBar.textContent = `${carlosWeight} kg`;
+            carlosWeightDisplay.textContent = carlosWeight;
+        }
+        
+        function checkGymWinner() {
+            if (playerWeight >= 100 || carlosWeight >= 100) {
+                gymGameRunning = false;
+                clearInterval(gymInterval);
+                playerLiftBtn.disabled = true;
+                
+                if (playerWeight >= 100 && carlosWeight >= 100) {
+                    gymResult.textContent = '¡Empate! Ambos son muy fuertes.';
+                } else if (playerWeight >= 100) {
+                    gymResult.textContent = `¡${playerName} gana! Eres más fuerte que Carlos.`;
+                } else {
+                    gymResult.textContent = '¡Carlos gana! Necesitas entrenar más.';
+                }
+            }
+        }
+        
+        // Juego de Carreras
+        let playerPosition = 0;
+        let carlosPosition = 0;
+        let raceInterval;
+        
+        const playerRunBtn = document.getElementById('player-run-btn');
+        const playerRaceBar = document.getElementById('player-race');
+        const carlosRaceBar = document.getElementById('carlos-race');
+        const playerSpeedDisplay = document.getElementById('player-speed');
+        const carlosSpeedDisplay = document.getElementById('carlos-speed');
+        const raceResult = document.getElementById('race-result');
+        const raceRestartBtn = document.getElementById('race-restart-btn');
+        const switchToGymBtn = document.getElementById('switch-to-gym-btn');
+        const playerRacer = document.getElementById('player-racer');
+        const carlosRacer = document.getElementById('carlos-racer');
+        
+        function setupRaceGame() {
+            playerPosition = 0;
+            carlosPosition = 0;
+            
+            playerSpeedDisplay.textContent = '0';
+            carlosSpeedDisplay.textContent = '0';
+            playerRaceBar.style.width = '0%';
+            playerRaceBar.textContent = '0%';
+            carlosRaceBar.style.width = '0%';
+            carlosRaceBar.textContent = '0%';
+            raceResult.textContent = '';
+            
+            playerRacer.style.left = '10px';
+            carlosRacer.style.left = '10px';
+            
+            playerRunBtn.disabled = false;
+            playerRunBtn.textContent = '¡Correr!';
+            
+            playerRunBtn.addEventListener('click', playerRun);
+            raceRestartBtn.addEventListener('click', setupRaceGame);
+            switchToGymBtn.addEventListener('click', () => switchGame('gym'));
+            
+            if (raceInterval) clearInterval(raceInterval);
+            raceInterval = setInterval(carlosRun, 100);
+            raceGameRunning = true;
+        }
+        
+        function playerRun() {
+            if (!raceGameRunning) return;
+            
+            const runAmount = Math.floor(Math.random() * 5) + 3;
+            playerPosition += runAmount;
+            
+            updateRaceDisplay();
+            checkRaceWinner();
+        }
+        
+        function carlosRun() {
+            if (!raceGameRunning) return;
+            
+            const runAmount = Math.floor(Math.random() * 4) + 2;
+            carlosPosition += runAmount;
+            
+            updateRaceDisplay();
+            checkRaceWinner();
+        }
+        
+        function updateRaceDisplay() {
+            const maxPosition = Math.max(playerPosition, carlosPosition, 100);
+            const playerPercentage = (playerPosition / 100) * 100;
+            const carlosPercentage = (carlosPosition / 100) * 100;
+            
+            playerRaceBar.style.width = `${Math.min(playerPercentage, 100)}%`;
+            playerRaceBar.textContent = `${Math.min(playerPosition, 100)}%`;
+            playerSpeedDisplay.textContent = playerPosition * 2;
+            
+            carlosRaceBar.style.width = `${Math.min(carlosPercentage, 100)}%`;
+            carlosRaceBar.textContent = `${Math.min(carlosPosition, 100)}%`;
+            carlosSpeedDisplay.textContent = carlosPosition * 2;
+            
+            const trackWidth = document.getElementById('race-track').offsetWidth;
+            const playerLeft = Math.min((playerPosition / 100) * (trackWidth - 50), trackWidth - 50);
+            const carlosLeft = Math.min((carlosPosition / 100) * (trackWidth - 50), trackWidth - 50);
+            
+            playerRacer.style.left = `${playerLeft}px`;
+            carlosRacer.style.left = `${carlosLeft}px`;
+        }
+        
+        function checkRaceWinner() {
+            if (playerPosition >= 100 || carlosPosition >= 100) {
+                raceGameRunning = false;
+                clearInterval(raceInterval);
+                playerRunBtn.disabled = true;
+                
+                if (playerPosition >= 100 && carlosPosition >= 100) {
+                    raceResult.textContent = '¡Empate! Ambos son muy rápidos.';
+                } else if (playerPosition >= 100) {
+                    raceResult.textContent = `¡${playerName} gana! Eres más rápido que Carlos.`;
+                } else {
+                    raceResult.textContent = '¡Carlos gana! Necesitas entrenar más.';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
