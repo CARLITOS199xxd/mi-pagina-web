@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zpady - Ofertas Especiales</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 0.5rem;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 1rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .ofertas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+        .oferta {
+            border: 1px solid #eee;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        .oferta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .oferta img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        .precio {
+            font-size: 1.2rem;
+            color: #d32f2f;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        .precio-anterior {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        .descuento {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #d32f2f;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 50%;
+            font-size: 0.8rem;
+        }
+        .btn-comprar {
+            background-color: #d32f2f;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-comprar:hover {
+            background-color: #b71c1c;
+        }
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Zpady</h1>
+        <p>Ofertas Especiales</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="perfumes-clasicos.html">Perfumes Clásicos</a></li>
+            <li><a href="ofertas.html">Ofertas</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Ofertas de Temporada</h2>
+        <p>Aprovecha nuestros descuentos especiales en fragancias seleccionadas</p>
+        
+        <div class="ofertas-grid">
+            <div class="oferta">
+                <span class="descuento">-20%</span>
+                <h3>Frescor Citrico</h3>
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" alt="Perfume Frescor Cítrico">
+                <p>Energizante mezcla de limón, bergamota y menta. Edición verano.</p>
+                <div class="precio">$240.00 MXN</div>
+                <div class="precio-anterior">$300.00 MXN</div>
+                <button class="btn-comprar">Añadir al carrito</button>
+            </div>
+            
+            <div class="oferta">
+                <span class="descuento">-30%</span>
+                <h3>Vainilla Dream</h3>
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" alt="Perfume Vainilla Dream">
+                <p>Dulce y cálido, con notas de vainilla, coco y almizcle.</p>
+                <div class="precio">$280.00 MXN</div>
+                <div class="precio-anterior">$400.00 MXN</div>
+                <button class="btn-comprar">Añadir al carrito</button>
+            </div>
+            
+            <div class="oferta">
+                <span class="descuento">-15%</span>
+                <h3>Bosque Verde</h3>
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" alt="Perfume Bosque Verde">
+                <p>Fragancia masculina con notas de pino, cedro y especias.</p>
+                <div class="precio">$340.00 MXN</div>
+                <div class="precio-anterior">$400.00 MXN</div>
+                <button class="btn-comprar">Añadir al carrito</button>
+            </div>
+            
+            <div class="oferta">
+                <span class="descuento">-25%</span>
+                <h3>Flor de Cerezo</h3>
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" alt="Perfume Flor de Cerezo">
+                <p>Delicada fragancia floral inspirada en los cerezos en flor.</p>
+                <div class="precio">$262.00 MXN</div>
+                <div class="precio-anterior">$350.00 MXN</div>
+                <button class="btn-comprar">Añadir al carrito</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Zpady - "La mejor fragancia siempre contigo"</p>
+        <p>© 2025 Zpady. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
