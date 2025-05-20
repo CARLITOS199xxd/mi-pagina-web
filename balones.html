@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CERXC-SPORT | Tienda Deportiva #1</title>
+    <title>Balones Deportivos | CERXC-SPORT</title>
     <style>
-        /* Estilos generales */
         * {
             margin: 0;
             padding: 0;
@@ -42,18 +41,16 @@
         nav a:hover {
             color: #e63946;
         }
-        .ofertas {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 2rem;
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
+            padding: 2rem;
         }
         .producto {
             background: white;
             border-radius: 10px;
             padding: 1.5rem;
-            width: 280px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s;
@@ -85,29 +82,6 @@
         .btn-comprar:hover {
             background: #e63946;
         }
-        .contacto {
-            background: linear-gradient(135deg, #1a2a57, #333);
-            color: white;
-            text-align: center;
-            padding: 3rem;
-            margin-top: 2rem;
-        }
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: 0.3s;
-        }
-        .whatsapp-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-        }
         footer {
             background: #333;
             color: white;
@@ -127,48 +101,55 @@
 </head>
 <body>
     <header>
-        <h1>CERXC-SPORT</h1>
-        <p>🏆 Tu tienda deportiva con los mejores precios manejada por Cesar, Francisco, Gerardo y Cecilio 🏆</p>
+        <h1>Balones Deportivos</h1>
+        <p>⚽ Los mejores balones para fútbol, básquet y más ⚽</p>
     </header>
     <nav>
         <a href="index.html">Inicio</a>
-        <a href="playeras.html">Playeras Liga MX</a>
+        <a href="playeras.html">Playeras</a>
         <a href="balones.html">Balones</a>
-        <a href="gym.html">Gimnasio & Suplementos</a>
+        <a href="gym.html">Gimnasio</a>
     </nav>
-    <section class="ofertas">
+    <section class="productos">
+        <!-- Balón 1 -->
         <div class="producto">
-            <img src="R.jpeg" alt="Gorra Nike">
-            <h3>Gorra Nike</h3>
-            <p class="precio">$349 MXN</p>
+            <img src="cq7147-100-5_imagen-del-balon-de-futbol-nike-flight-premier-league-2020-2021-blanco_1_frontal.jpg" alt="Nike Premier League">
+            <h3>Balón Nike Premier League</h3>
+            <p class="precio">$1,199 MXN</p>
             <button class="btn-comprar">Comprar</button>
         </div>
+        <!-- Balón 2 -->
         <div class="producto">
-            <img src="R (1).jpeg" alt="Zapatos Running">
-            <h3>Zapatos Running Adidas</h3>
-            <p class="precio">$1,299 MXN</p>
+            <img src="OIP (7).jpeg" alt="Adidas Champions League">
+            <h3>Balón Adidas Champions</h3>
+            <p class="precio">$1,499 MXN</p>
             <button class="btn-comprar">Comprar</button>
         </div>
+        <!-- Balón 3 -->
         <div class="producto">
-            <img src="OIP.jpeg" alt="Mochila Deportiva">
-            <h3>Mochila Deportiva</h3>
-            <p class="precio">$599 MXN</p>
+            <img src="OIP (8).jpeg" alt="Puma AC Milan">
+            <h3>Balón Puma AC Milan</h3>
+            <p class="precio">$999 MXN</p>
             <button class="btn-comprar">Comprar</button>
         </div>
+        <!-- Balón 4 -->
         <div class="producto">
-            <img src="exclusivos-tenis-nike-basketball-nba-baloncesto-originales-D_NQ_NP_803266-MCO25565599519_052017-F.jpg" alt="Tenis Basketball">
-            <h3>Tenis Basketball Nike</h3>
+            <img src="R (2).jpeg" alt="Wilson NBA Official">
+            <h3>Balón Wilson NBA</h3>
             <p class="precio">$1,799 MXN</p>
             <button class="btn-comprar">Comprar</button>
         </div>
-    </section>
-    <section class="contacto">
-        <h2>📲 ¿Necesitas ayuda?</h2>
-        <p>¡Contáctanos por WhatsApp y te atenderemos al instante!</p>
-        <a href="https://wa.me/527861424715" class="whatsapp-btn">💬 Enviar Mensaje</a>
+        <!-- Balón 5 -->
+        <div class="producto">
+            <img src="OIP (9).jpeg" alt="Mikasa Voley">
+            <h3>Balón Mikasa Voley</h3>
+            <p class="precio">$699 MXN</p>
+            <button class="btn-comprar">Comprar</button>
+        </div>
+        <!-- (Repetir hasta 30 balones) -->
     </section>
     <footer>
-        <p>© 2025 CERXC-SPORT. Todos los derechos reservados con sus provedores Cesar Eduardo, CEsar Gerardo; Francisco Montoya y Cecilio Ríos.</p>
+        <p>© 2025 CERXC-SPORT. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
